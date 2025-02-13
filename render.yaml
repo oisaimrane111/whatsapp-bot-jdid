@@ -4,7 +4,7 @@ services:
     env: node
     plan: free
     buildCommand: npm install  # Install dependencies
-    startCommand: node index.js  # Start the app using index.js
+    startCommand: node index.js  # Start the app using index.js, not app.js
     envVars:
       - key: NODE_ENV
         value: production
@@ -12,6 +12,6 @@ services:
         value: ${GIPHY_API_KEY}  # Securely use environment variables
       - key: OPENAI_API_KEY
         value: ${OPENAI_API_KEY}  # Securely use environment variables
-    instanceClass: free  # Choose instance class based on your resource needs
+    instanceClass: free
     disk:
       size: 512  # Optional: Adjust the disk size if necessary
