@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: efootball-bot
+    env: node
+    plan: free
+    buildCommand: npm install  # Install dependencies
+    startCommand: node index.js  # Start your application from index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: GIPHY_API_KEY
+        value: ${GIPHY_API_KEY}  # Use your Giphy API key securely
+      - key: OPENAI_API_KEY
+        value: ${OPENAI_API_KEY}  # Use your OpenAI API key securely
+    instanceClass: free
+    disk:
+      size: 512  # Optional: Adjust disk size if necessary
