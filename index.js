@@ -28,7 +28,7 @@ const players = [
 let currentPlayer = null;
 
 async function getGif(playerName) {
-    const apiKey = 'YOUR_GIPHY_API_KEY';
+    const apiKey = 'XjuOL0vC0YdzBN98xESoV8a0CKK9R8Jg';
     const response = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${playerName}&limit=1`);
     return response.data.data[0]?.images?.original?.url;
 }
