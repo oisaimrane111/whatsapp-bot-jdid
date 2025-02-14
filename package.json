@@ -7,15 +7,15 @@
     "dev": "nodemon index.js"  
   },
   "dependencies": {
-    "@whiskeysockets/baileys": "^5.0.0",  // Updated to the latest compatible version
-    "dotenv": "^16.0.0"  // Added for environment variable management
+    "@whiskeysockets/baileys": "^5.0.0",  
+    "dotenv": "^16.0.0"  
   },
   "engines": {
     "node": ">=14.0.0"  
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/football-whatsapp-bot.git"  // Replace with your actual GitHub repo URL
+    "url": "https://github.com/oisaimrane111/football-whatsapp-bot.git"  
   },
   "author": "bambino",  
   "license": "MIT",  
