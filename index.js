@@ -1,9 +1,9 @@
-const { makeWASocket, useSingleFileAuthState, MessageType } = require('@whiskeysockets/baileys');
+const { makeWASocket, MessageType, useMultiFileAuthState } = require('@whiskeysockets/baileys');
 const fs = require('fs');
 const axios = require('axios');
 
-// Fix the import for useSingleFileAuthState
-const { state, saveState } = useSingleFileAuthState('./auth_info.json'); // Make sure the path is correct
+// Use MultiFileAuthState (alternative to useSingleFileAuthState)
+const { state, saveState } = useMultiFileAuthState('./auth_info.json'); 
 
 const botCommands = `
 ⚽ *Football Bot Commands* ⚽
