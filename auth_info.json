@@ -1,0 +1,17 @@
+const { makeWASocket, useMultiFileAuthState } = require('@whiskeysockets/baileys');
+const fs = require('fs');
+
+// This will be generated when you first run the bot locally
+const { state, saveState } = useMultiFileAuthState('./auth_info.json'); // Use relative path
+
+async function startBot() {
+    const sock = makeWASocket({ auth: state });
+
+    sock.ev.on('creds.update', saveState);
+
+    sock.ev.on('messages.upsert', async ({ messages }) => {
+        // Your message handling logic...
+    });
+}
+
+startBot();
