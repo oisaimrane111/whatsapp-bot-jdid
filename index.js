@@ -1,5 +1,6 @@
 const { default: makeWASocket, useSingleFileAuthState, MessageType } = require('@whiskeysockets/baileys');
 const fs = require('fs');
+const axios = require('axios');
 const { state, saveState } = useSingleFileAuthState('/data/auth_info.json');
 
 const botCommands = `
@@ -17,6 +18,20 @@ const botCommands = `
 
 let tournament = { teams: [], results: [], winner: null };
 let quizLeaderboard = {};
+const players = [
+    { name: 'messi' },
+    { name: 'ronaldo' },
+    { name: 'neymar' },
+    { name: 'mbappe' },
+    { name: 'haaland' }
+];
+let currentPlayer = null;
+
+async function getGif(playerName) {
+    const apiKey = 'YOUR_GIPHY_API_KEY';
+    const response = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${playerName}&limit=1`);
+    return response.data.data[0]?.images?.original?.url;
+}
 
 async function startBot() {
     const sock = makeWASocket({ auth: state });
@@ -65,7 +80,9 @@ async function startBot() {
         }
 
         if (textMessage.startsWith('Quiz')) {
-            await sock.sendMessage(sender, { image: fs.readFileSync('/data/player.jpg'), caption: '🧑‍💻 Who is this player?' });
+            currentPlayer = players[Math.floor(Math.random() * players.length)];
+            const gifUrl = await getGif(currentPlayer.name);
+            await sock.sendMessage(sender, { image: { url: gifUrl }, caption: '🧑‍💻 Who is this player?' });
         }
 
         if (textMessage.startsWith('Leaderboard')) {
@@ -73,11 +90,11 @@ async function startBot() {
             await sock.sendMessage(sender, { text: `🏆 Leaderboard:\n${leaderboardText}` });
         }
 
-        // Example for guessing the player (adjust logic as needed)
-        if (textMessage.toLowerCase() === 'messi') {
+        if (currentPlayer && textMessage.toLowerCase() === currentPlayer.name) {
             const user = msg.pushName;
             quizLeaderboard[user] = (quizLeaderboard[user] || 0) + 1;
             await sock.sendMessage(sender, { text: `🎉 Correct! ${user} gets 1 point!` });
+            currentPlayer = null;
         }
     });
 }
