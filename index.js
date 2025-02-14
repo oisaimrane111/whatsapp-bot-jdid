@@ -1,7 +1,9 @@
 const { default: makeWASocket, useSingleFileAuthState, MessageType } = require('@whiskeysockets/baileys');
 const fs = require('fs');
 const axios = require('axios');
-const { state, saveState } = useSingleFileAuthState('/data/auth_info.json');
+
+// Ensure the correct path for the auth file
+const { state, saveState } = useSingleFileAuthState('./auth_info.json'); // Use relative path or correct location for your auth file
 
 const botCommands = `
 ⚽ *Football Bot Commands* ⚽
@@ -44,7 +46,7 @@ async function startBot() {
 
         const textMessage = msg.message.conversation || msg.message.extendedTextMessage?.text;
         const sender = msg.key.remoteJid;
-        const isAdmin = sender.includes('admin'); // Example check, replace with proper logic
+        const isAdmin = sender === 'admin@whatsapp.net'; // Replace with actual admin ID or logic
 
         if (!textMessage) return;
 
