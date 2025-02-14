@@ -1,6 +1,6 @@
 const { default: makeWASocket, useSingleFileAuthState, MessageType } = require('@whiskeysockets/baileys');
 const fs = require('fs');
-const { state, saveState } = useSingleFileAuthState('./auth_info.json');
+const { state, saveState } = useSingleFileAuthState('/data/auth_info.json');
 
 const botCommands = `
 ⚽ *Football Bot Commands* ⚽
@@ -65,7 +65,7 @@ async function startBot() {
         }
 
         if (textMessage.startsWith('Quiz')) {
-            await sock.sendMessage(sender, { image: fs.readFileSync('./player.jpg'), caption: '🧑‍💻 Who is this player?' });
+            await sock.sendMessage(sender, { image: fs.readFileSync('/data/player.jpg'), caption: '🧑‍💻 Who is this player?' });
         }
 
         if (textMessage.startsWith('Leaderboard')) {
