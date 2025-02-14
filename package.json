@@ -4,21 +4,21 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"  // Added script for hot-reloading during development
+    "dev": "nodemon index.js"  
   },
   "dependencies": {
     "@whiskeysockets/baileys": "^5.4.0",
-    "dotenv": "^16.0.0"  // For managing environment variables
+    "dotenv": "^16.0.0"  
   },
   "engines": {
-    "node": ">=14.0.0"  // Specify the minimum Node.js version
+    "node": ">=14.0.0"  
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/football-whatsapp-bot.git"  // Replace with your repository URL
+    "url": "https://github.com/your-username/football-whatsapp-bot.git"  
   },
-  "author": "bambino",  // Replace with your name
-  "license": "MIT",  // Choose an appropriate license
+  "author": "bambino",  
+  "license": "MIT",  
   "description": "A WhatsApp bot for managing football tournaments using Baileys",
   "keywords": [
     "whatsapp",
