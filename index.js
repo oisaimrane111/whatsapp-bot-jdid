@@ -1,9 +1,9 @@
-const { makeWASocket, MessageType, useMultiFileAuthState } = require('@whiskeysockets/baileys');
+const { default: makeWASocket, useSingleFileAuthState } = require('@whiskeysockets/baileys');
 const fs = require('fs');
 const axios = require('axios');
 
-// Use MultiFileAuthState (alternative to useSingleFileAuthState)
-const { state, saveState } = useMultiFileAuthState('./auth_info.json'); 
+// Authentication
+const { state, saveState } = useSingleFileAuthState('./auth_info.json');
 
 const botCommands = `
 ⚽ *Football Bot Commands* ⚽
@@ -29,6 +29,7 @@ const players = [
 ];
 let currentPlayer = null;
 
+// Function to fetch GIF from Giphy
 async function getGif(playerName) {
     const apiKey = 'XjuOL0vC0YdzBN98xESoV8a0CKK9R8Jg';
     const response = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${playerName}&limit=1`);
@@ -46,7 +47,7 @@ async function startBot() {
 
         const textMessage = msg.message.conversation || msg.message.extendedTextMessage?.text;
         const sender = msg.key.remoteJid;
-        const isAdmin = sender === 'admin@whatsapp.net'; // Replace with actual admin ID or logic
+        const isAdmin = sender.includes('admin'); // Example check, replace with proper logic
 
         if (!textMessage) return;
 
