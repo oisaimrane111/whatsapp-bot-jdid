@@ -1,29 +1,19 @@
 {
   "name": "football-whatsapp-bot",
   "version": "1.0.0",
+  "description": "A WhatsApp bot for managing eFootball tournaments using Baileys.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"  
+    "dev": "nodemon index.js"
   },
   "dependencies": {
-    "@whiskeysockets/baileys": "latest",  
-    "dotenv": "^16.0.0"  
+    "@whiskeysockets/baileys": "^5.4.0",
+    "axios": "^1.4.0",
+    "fs": "^0.0.1-security",
+    "nodemon": "^3.0.0"
   },
   "engines": {
-    "node": ">=14.0.0"  
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/oisaimrane111/football-whatsapp-bot.git"  
-  },
-  "author": "bambino",  
-  "license": "MIT",  
-  "description": "A WhatsApp bot for managing football tournaments using Baileys",
-  "keywords": [
-    "whatsapp",
-    "bot",
-    "football",
-    "tournament"
-  ]
+    "node": ">=16.0.0"
+  }
 }
